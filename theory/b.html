@@ -14,7 +14,7 @@
         <div v-else-if="error">
           <!-- 비어있는 문자는 false 이기 때문!!!!! -->
           <p>{{error}}</p>
-          <button @click="error=retry">다시 시도</button>
+          <button @click="error=retry()">다시 시도</button>
         </div>
         <div v-else-if="list.length===0">
           <p>데이터가 없어요.</p>
@@ -53,7 +53,14 @@
           };
         },
         methods: {
-          retry() {},
+          retry() {
+            this.isLoading = true;
+            this.error = null;
+            setTimeout(() => {
+              this.isLoading = false;
+              this.error = '오류발생';
+            }, 2000);
+          },
         },
       });
       vm.mount('#app');

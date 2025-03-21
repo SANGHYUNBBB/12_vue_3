@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파일명</title>
+  </head>
+  <body>
+    <div id="app">
+      <template>{{message}}</template>
+      <ul v-for="item in items" :key="item.id" hidden>
+        <li>{{item.title}}</li>
+      </ul>
+
+      <template v-for="item in items" :key="item.id">
+        <div>{{item.title}}</div>
+        <div>{{item.description}}</div>
+        <hr />
+        <!-- 템플릿 안의 요소들이 반복되지만!!!!!!!!
+         템플릿이 생성되지는 않는다!!!!! -->
+      </template>
+      <form>
+        <template v-for="" :key="">
+          <label for="">이름:{{}} </label>
+          <input type="text" id="name" :required="" placeholder="이름 입력" />
+          <span>조건에 따라서 헬프 텍스트 출력되는 곳{{}}</span>
+          <hr />
+        </template>
+        <!-- 계층구조를 복잡하게 하면 css를힘들게 한다.
+         그래서 template로 감싸는것!!!!!!! -->
+
+        <button type="submit">제출</button>
+      </form>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript">
+      const { createApp } = Vue;
+
+      let vm = createApp({
+        name: 'App',
+        data() {
+          return {
+            message: 'Hello Vue!',
+            //1.기본
+            items: [
+              { id: 1, title: '제목1', description: '내용1' },
+              { id: 2, title: '제목2', description: '내용2' },
+              { id: 3, title: '제목3', description: '내용3' },
+            ],
+            formFields: [
+              {
+                id: 'name',
+                label: '이름',
+                type: 'text',
+                required: true,
+              },
+              {
+                id: 'email',
+                label: '이메일',
+                type: 'email',
+                required: true,
+              },
+              {
+                id: 'password',
+                label: '비밀번호',
+                type: 'password',
+                required: true,
+                helpText: '8자 이상 입력해주세요',
+              },
+            ],
+          };
+        },
+      });
+      vm.mount('#app');
+    </script>
+  </body>
+</html>
