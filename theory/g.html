@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파일명</title>
+    <style>
+      [v-clock] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>pre</h1>
+      <p>{{message}}</p>
+      <pre>
+        코드 작성 어쩌고 저쩌고 들여쓰기 되는 부분.
+                     {{message}}  
+    </pre
+      >
+      <span> span으로 쓰면 저렇게 줄 들여쓰기가 안됨. </span>
+
+      <h1>v-once</h1>
+      <div>
+        <h3>일반적 데이터 바인딩</h3>
+        <p>{{counter}}</p>
+        <div>
+          <p v-once>{{counter}}</p>
+        </div>
+        <button @click="increment()">증가버튼</button>
+      </div>
+
+      <h1>v-clock</h1>
+      <!-- html 요소에 추가해줌으로써 콧수염 문법의 깜빡임 문제를 해결! 처음 킬 떄 -->
+      <div v-clock>
+        <p>{{message}}</p>
+        <button @click="change()">메시지 변경</button>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script type="text/javascript">
+      const { createApp } = Vue;
+
+      setTimeout(() => {
+        let vm = createApp({
+          name: 'App',
+          data() {
+            return {
+              message: '초기값',
+              counter: 50,
+            };
+          },
+          methods: {
+            increment() {
+              this.counter = this.counter + 1;
+            },
+            change() {
+              this.message = '변경됐어요';
+            },
+          },
+        });
+        vm.mount('#app');
+      }, 2000);
+    </script>
+  </body>
+</html>

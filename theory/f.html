@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>파일명</title>
+    <style>
+      .login {
+        background-color: rgb(158, 158, 158);
+        padding: 1rem;
+      }
+      .login > * {
+        display: block;
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
     <div id="app">
@@ -19,10 +29,15 @@
         <!-- 템플릿 안의 요소들이 반복되지만!!!!!!!!
          템플릿이 생성되지는 않는다!!!!! -->
       </template>
-      <form>
-        <template v-for="" :key="">
-          <label for="">이름:{{}} </label>
-          <input type="text" id="name" :required="" placeholder="이름 입력" />
+      <form class="login">
+        <template v-for="formField in formFields" :key="formFields.id">
+          <label :for="formField.id">{{formField.label}} </label>
+          <input
+            :type="formField.type"
+            :id="formField.id"
+            :name="formField.id"
+            :required="formField.required"
+          />
           <span>조건에 따라서 헬프 텍스트 출력되는 곳{{}}</span>
           <hr />
         </template>
